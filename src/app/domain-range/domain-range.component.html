@@ -1,0 +1,22 @@
+<md-card class="domain-range-section very-light-primary-color">
+<md-card-content>
+    <table>
+      <tr>
+        <span class="badge badge-header"></span>
+        <th>Domain<i class="material-icons item-action" (click)="onSortByAlpha(sortedDictionary,'domain')">{{sortDomainIcon}}</i></th>
+        <th>Range<i class="material-icons item-action" (click)="onSortByAlpha(sortedDictionary,'range')">{{sortRangeIcon}}</i></th>
+        <th><button md-raised-button class="default-primary-color text-primary-color item-action add-new-action" [disabled]="!newAbled" (click)="onNew()">New</button></th>
+      </tr>
+      <tr class="{{domainrange.error}}" *ngFor="let domainrange of sortedDictionary" [class.selected]="domainrange.id === selectedDomainRange.id">
+        <span class="badge light-primary-color primary-text-color">{{sortedDictionary.indexOf(domainrange)+1}}</span>
+        <td class="item" [style.border-style]="domainrange.editable? 'solid': none" [attr.contenteditable]="domainrange.editable" [id]="'d'+domainrange.id">{{domainrange.domain}}</td>
+        <td class="item" [style.border-style]="domainrange.editable? 'solid': none" [attr.contenteditable]="domainrange.editable" [id]="'r'+domainrange.id">{{domainrange.range}}</td>
+        <td class="action-group">
+        <i class="material-icons item-action" [class.hidden]="domainrange.editable? true: false" (click)="onEdit(sortedDictionary, domainrange.id)">edit</i>
+        <i class="material-icons item-action accent-color-action" [class.hidden]="domainrange.editable? false: true" (click)="onSave(sortedDictionary, domainrange.id)">save</i>
+        <i class="material-icons item-action" (click)="onDelete(sortedDictionary, domainrange.id)">delete</i>
+        </td>
+      </tr>
+    </table>
+</md-card-content>
+</md-card>
