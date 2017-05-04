@@ -58,13 +58,17 @@ export class DictionaryService {
   getLastId = (dictionary) => R.last(dictionary).id;
 
   markError(dictionary) {
-    const d = R.map(this.updateError('none'), dictionary);
-    const d1 = this.duplicateDomainDictionary(d);
-    const d2 = this.duplicateDomainRangeDictionary(d1);
-    const d3 = this.chainsRangeDictionary(d2);
-    const d4 = this.chainsDomainDictionary(d3)
-    const d5 = this.cyclesDictionary(d4);
-    return d5
+    return this.cyclesDictionary(
+      this.chainsDomainDictionary(
+        this.chainsRangeDictionary(
+          this.duplicateDomainRangeDictionary(
+            this.duplicateDomainDictionary(
+              R.map(this.updateError('none'), dictionary)
+            )
+          )
+        )
+      )
+    )
   }
 
   getReducedDuplicateDomainList(dictionary) {
@@ -251,12 +255,13 @@ export class DictionaryService {
   sortByAlpha(dictionary, title, direction): DomainRange[] {
     this.sortDirection = direction;
     this.sortTitle = title;
+    let sorted: any;
     if (R.equals(direction, 'asc')) {
-      var sorted = R.sortWith([
+      sorted = R.sortWith([
         R.ascend(R.prop(title))
       ]);
     } else {
-      var sorted = R.sortWith([
+      sorted = R.sortWith([
         R.descend(R.prop(title))
       ]);
     }
@@ -290,7 +295,6 @@ export class DictionaryService {
   onDelete = (dictionary, id) => {
     const index = R.findIndex(R.propEq('id', id))(dictionary);
     this.sortedDictionary = R.remove(index, 1, dictionary);
-    // console.log('this.sortedDictionary... delete Sand', this.sortedDictionary);
     this.sortedDictionary = this.markError(this.sortedDictionary);
     this.DictionarySubject.next(this.sortedDictionary);
   }
@@ -303,7 +307,6 @@ export class DictionaryService {
     const newEditableDomainRange = R.assoc('editable', true, newDomainRange);
     this.sortedDictionary = R.prepend(newEditableDomainRange, this.sortedDictionary);
     this.lastId = newDomainRange.id;
-    console.log('last id is ', this.lastId);
     this.DictionarySubject.next(this.sortedDictionary);
   }
 
