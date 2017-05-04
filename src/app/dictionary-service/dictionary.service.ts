@@ -78,7 +78,7 @@ export class DictionaryService {
       const key = {
         domain: x.domain
       }
-      const itemIndex = R.findIndex(R.propEq("key", key))(prev)
+      const itemIndex = R.findIndex(R.propEq('key', key))(prev)
       if (itemIndex === -1) {
         return R.append({ key: key, count: 1 }, prev)
       }
@@ -99,7 +99,7 @@ export class DictionaryService {
       const compareKey = {
         domain: x.domain
       }
-      const item = R.find(R.propEq("key", compareKey))(reducedList)
+      const item = R.find(R.propEq('key', compareKey))(reducedList)
       const isFound = R.propSatisfies(x => x > 1, 'count', item);
       return isFound
     }
@@ -122,7 +122,7 @@ export class DictionaryService {
         domain: x.domain,
         range: x.range
       }
-      const itemIndex = R.findIndex(R.propEq("key", key))(prev)
+      const itemIndex = R.findIndex(R.propEq('key', key))(prev)
       if (itemIndex === -1) {
         return R.append({ key: key, count: 1 }, prev)
       }
@@ -144,7 +144,7 @@ export class DictionaryService {
         domain: x.domain,
         range: x.range
       }
-      const item = R.find(R.propEq("key", compareKey))(reducedList)
+      const item = R.find(R.propEq('key', compareKey))(reducedList)
       const isFound = R.propSatisfies(x => x > 1, 'count', item);
       return isFound
     }
@@ -174,7 +174,7 @@ export class DictionaryService {
 
     const checkError = (x) => {
       const compareKey = x.range;
-      const isFound = R.find(R.propEq("key", compareKey))(reducedList)
+      const isFound = R.find(R.propEq('key', compareKey))(reducedList)
       return isFound
     }
 
@@ -203,7 +203,7 @@ export class DictionaryService {
 
     const checkError = (x) => {
       const compareKey = x.domain;
-      const isFound = R.find(R.propEq("key", compareKey))(reducedList)
+      const isFound = R.find(R.propEq('key', compareKey))(reducedList)
       return isFound
     }
 
@@ -238,7 +238,7 @@ export class DictionaryService {
         domain: x.range,
         range: x.domain
       }
-      const isFound = R.find(R.propEq("key", compareKey))(reducedList)
+      const isFound = R.find(R.propEq('key', compareKey))(reducedList)
       return isFound
     }
 
@@ -300,12 +300,13 @@ export class DictionaryService {
   }
 
   onNew = () => {
-    const newDomainRange = new DomainRange();
-    newDomainRange.id = this.lastId + 1;
-    // newDomainRange.domain = '';
-    // newDomainRange.range = '';
-    const newEditableDomainRange = R.assoc('editable', true, newDomainRange);
-    this.sortedDictionary = R.prepend(newEditableDomainRange, this.sortedDictionary);
+    const newDomainRange = {
+      id: this.lastId + 1,
+      domain: '',
+      range: '',
+      editable: true
+    };
+    this.sortedDictionary = R.prepend(newDomainRange, this.sortedDictionary);
     this.lastId = newDomainRange.id;
     this.DictionarySubject.next(this.sortedDictionary);
   }
