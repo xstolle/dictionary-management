@@ -6,32 +6,32 @@ import { DomainRange } from './domain-range';
 
 @Injectable()
 export class DictionaryService {
-  dictionary: DomainRange[] = [
-    { id: 1, domain: 'x', range: '1' },
-    { id: 2, domain: 'y', range: '2' },
-    { id: 3, domain: 'z', range: '3' },
-    { id: 4, domain: 'x', range: '1' },
-    { id: 5, domain: '1', range: 'x' },
-    { id: 6, domain: 'w', range: 'a' },
-    { id: 7, domain: 'v', range: '5' },
-    { id: 8, domain: 'z', range: '8' },
-    { id: 9, domain: 'a', range: 'b' },
-    { id: 10, domain: 'k', range: '11' },
-    { id: 11, domain: 'k', range: '11' },
-    { id: 12, domain: 'x', range: 'xia' },
-    { id: 13, domain: 'j', range: 'h' },
-    { id: 14, domain: 'h', range: 'j' }
-  ];
   // dictionary: DomainRange[] = [
-  //   { id: 1, domain: 'Stonegrey', range: 'Dark Grey' },
-  //   { id: 2, domain: 'Skyblue', range: 'Light Grey' },
-  //   { id: 3, domain: 'Sand', range: 'Biege' },
-  //   { id: 4, domain: 'Stonegrey', range: 'Dark Grey' },
-  //   { id: 5, domain: 'Dark Grey', range: 'Stonegrey' },
-  //   { id: 6, domain: 'PitchBlack', range: 'Black' },
-  //   { id: 7, domain: 'TupleYellow', range: 'Yellow' },
-  //   { id: 8, domain: 'Black', range: 'Stone' }
+  //   { id: 1, domain: 'x', range: '1' },
+  //   { id: 2, domain: 'y', range: '2' },
+  //   { id: 3, domain: 'z', range: '3' },
+  //   { id: 4, domain: 'x', range: '1' },
+  //   { id: 5, domain: '1', range: 'x' },
+  //   { id: 6, domain: 'w', range: 'a' },
+  //   { id: 7, domain: 'v', range: '5' },
+  //   { id: 8, domain: 'z', range: '8' },
+  //   { id: 9, domain: 'a', range: 'b' },
+  //   { id: 10, domain: 'k', range: '11' },
+  //   { id: 11, domain: 'k', range: '11' },
+  //   { id: 12, domain: 'x', range: 'xia' },
+  //   { id: 13, domain: 'j', range: 'h' },
+  //   { id: 14, domain: 'h', range: 'j' }
   // ];
+  dictionary: DomainRange[] = [
+    { id: 1, domain: 'Stonegrey', range: 'Dark Grey' },
+    { id: 2, domain: 'Skyblue', range: 'Light Grey' },
+    { id: 3, domain: 'Sand', range: 'Biege' },
+    { id: 4, domain: 'Stonegrey', range: 'Dark Grey' },
+    { id: 5, domain: 'Dark Grey', range: 'Stonegrey' },
+    { id: 6, domain: 'PitchBlack', range: 'Black' },
+    { id: 7, domain: 'TupleYellow', range: 'Yellow' },
+    { id: 8, domain: 'Black', range: 'Stone' }
+  ];
 
   errors = [
     { errorCode: 'duplicate-different-range', color: 'pink' },
