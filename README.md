@@ -1,7 +1,7 @@
 # Domain Range Management
 
 # See demo on github page
-https://xwilluhn.github.io/dictionary-management/dist
+https://xwilluhn.github.io/dictionary-management
 
 ## Development server
 
